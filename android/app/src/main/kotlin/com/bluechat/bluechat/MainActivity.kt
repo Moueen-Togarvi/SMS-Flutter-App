@@ -256,7 +256,11 @@ private class BlueChatBluetoothBridge(
             addAction(BluetoothDevice.ACTION_FOUND)
             addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
         }
-        activity.registerReceiver(discoveryReceiver, filter)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            activity.registerReceiver(discoveryReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            activity.registerReceiver(discoveryReceiver, filter)
+        }
     }
 
     private fun sendRaw(packet: String) {
@@ -353,4 +357,3 @@ private class BlueChatBluetoothBridge(
         }
     }
 }
-

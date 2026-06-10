@@ -77,7 +77,6 @@ class BluetoothService {
 
   Future<void> connect(String address) async {
     await _methods.invokeMethod<void>('connect', {'address': address});
-    await _sendHandshakeIfReady();
   }
 
   Future<void> disconnect() => _methods.invokeMethod<void>('disconnect');
@@ -186,4 +185,3 @@ class BluetoothError {
   final String code;
   final String message;
 }
-
