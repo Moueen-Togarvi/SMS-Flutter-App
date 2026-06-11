@@ -23,7 +23,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final profile = ref.watch(userProvider).valueOrNull;
+    final profile = ref.watch(userProvider).asData?.value;
     final settings = ref.watch(settingsProvider);
     _controller.text = profile?.username ?? '';
 
@@ -73,4 +73,3 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 }
-

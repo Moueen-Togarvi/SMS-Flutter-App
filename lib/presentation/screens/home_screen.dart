@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final chats = ref.watch(chatProvider);
-    final bluetooth = ref.watch(bluetoothProvider).valueOrNull;
+    final bluetooth = ref.watch(bluetoothProvider).asData?.value;
 
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +65,7 @@ class _ChatList extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.only(bottom: 96),
       itemCount: chats.length,
-      separatorBuilder: (_, __) => const Divider(height: 1, indent: 72),
+      separatorBuilder: (_, _) => const Divider(height: 1, indent: 72),
       itemBuilder: (context, index) {
         final chat = chats[index];
         return ChatListTile(
@@ -103,4 +103,3 @@ class _EmptyChats extends StatelessWidget {
     );
   }
 }
-

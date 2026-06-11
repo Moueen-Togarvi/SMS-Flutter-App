@@ -12,11 +12,11 @@ class DiscoverDevicesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bluetoothAsync = ref.watch(bluetoothProvider);
-    final bluetooth = bluetoothAsync.valueOrNull ?? const BluetoothState();
+    final bluetooth = bluetoothAsync.asData?.value ?? const BluetoothState();
     final scanning = bluetooth.status == BluetoothConnectionStatus.discovering;
 
     ref.listen(bluetoothProvider, (previous, next) {
-      final error = next.valueOrNull?.errorMessage;
+      final error = next.asData?.value.errorMessage;
       if (error != null && error.isNotEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error)));
       }
@@ -139,4 +139,3 @@ class _EmptyDevices extends StatelessWidget {
     );
   }
 }
-

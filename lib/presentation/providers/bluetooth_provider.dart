@@ -200,7 +200,7 @@ class BluetoothController extends AsyncNotifier<BluetoothState> {
     if (address == null) return;
     for (var attempt = 0; attempt < AppConstants.reconnectAttempts; attempt++) {
       await Future<void>.delayed(AppConstants.reconnectDelay);
-      final current = state.valueOrNull;
+      final current = state.asData?.value;
       if (current?.status == BluetoothConnectionStatus.connected) return;
       _setState((value) => value.copyWith(status: BluetoothConnectionStatus.reconnecting));
       try {
@@ -213,7 +213,7 @@ class BluetoothController extends AsyncNotifier<BluetoothState> {
   }
 
   void _setState(BluetoothState Function(BluetoothState current) update) {
-    final current = state.valueOrNull ?? const BluetoothState();
+    final current = state.asData?.value ?? const BluetoothState();
     state = AsyncData(update(current));
   }
 
