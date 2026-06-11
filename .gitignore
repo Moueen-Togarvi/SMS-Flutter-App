@@ -1,10 +1,43 @@
+# Dart and Flutter
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .metadata
+.packages
+.pub/
+.pub-cache/
 build/
 coverage/
-android/.gradle/
-android/app/build/
+
+# Local machine configuration
+local.properties
 android/local.properties
 *.iml
+.idea/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+
+# Android build output and signing secrets
+android/.gradle/
+android/app/build/
+android/key.properties
+key.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+*.der
+*.crt
+*.key
+
+# Backend/service config files should not exist in this offline app.
+google-services.json
+GoogleService-Info.plist
+lib/firebase_options.dart
+
+# OS files
+.DS_Store
+Thumbs.db
